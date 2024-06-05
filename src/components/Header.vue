@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="white" flat>
+  <v-app-bar app color="white" flat class="header">
     <v-spacer></v-spacer>
     <v-menu open-on-hover>
       <template v-slot:activator="{ props }">
