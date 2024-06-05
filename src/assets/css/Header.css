@@ -1,0 +1,19 @@
+
+.header{
+    margin-right: 20px;
+}
+.v-app-bar {
+    box-shadow: none;
+  }
+.flag-button {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #E0E0E0; /* Màu viền xám nhạt */
+    border-radius: 25px; /* Bo tròn viền */
+    padding: 5px 10px; /* Khoảng cách bên trong */
+}
+
+.bordered-image {
+    border-radius: 1000px;
+  }

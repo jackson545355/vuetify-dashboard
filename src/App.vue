@@ -4,12 +4,6 @@
       <Sidebar />
       <div class="content">
         <Header />
-        <nav>
-          <router-link to="/dashboard/Home">Home aaa</router-link>
-          <router-link to="/dashboard/Product">Product</router-link>
-          <router-link to="/dashboard/Comments">Comments</router-link>
-          <router-link to="/dashboard/Management">Management</router-link>
-        </nav>
         <v-main>
           <router-view />
         </v-main>
