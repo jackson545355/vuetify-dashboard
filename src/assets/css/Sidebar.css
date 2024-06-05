@@ -1,0 +1,26 @@
+.v-navigation-drawer {
+    width: 250px;
+}
+
+.v-list-item-avatar img {
+    width: 80%;
+}
+
+.v-list-item-group .v-list-item {
+    margin: 15px 0;
+}
+
+.v-list-item-group .v-list-item a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.v-list-item-group .v-list-item a:hover,
+.v-list-item-group .v-list-item a.active {
+    background-color: #007bff;
+    color: white;
+}
