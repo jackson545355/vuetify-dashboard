@@ -1,26 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <nav>
+    <RouterLink to="/dashboard/Home">Home aaa</RouterLink>
+    <RouterLink to="/dashboard/Product">Product</RouterLink>
+    <RouterLink to="/dashboard/Comments">Comments</RouterLink>
+    <RouterLink to="/dashboard/Management">Management</RouterLink>
+  </nav>
+  <v-app>
+    <v-main>
+      <RouterView />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+/* Add your styles here */
+nav {
+  display: flex;
+  gap: 10px;
 }
 </style>
