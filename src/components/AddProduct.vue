@@ -14,7 +14,7 @@
             <v-form>
               <v-card>
                 <v-card-text>
-                  <h1>We need to some information of new product</h1>
+                  <h1>We need to some information of new product!</h1>
                   <br/>
                   <h2>Basic</h2>
                   <br />
