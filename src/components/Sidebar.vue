@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app class="sidebar">
+  <v-navigation-drawer app class="['sidebar', { collapsed: isCollapsed }]">
     <v-list>
       <v-list-item class="sidebar-logo">
         <v-list-item-avatar>
@@ -41,6 +41,12 @@ export default {
         { title: 'Comments', to: '/dashboard/Comments', icon: 'mdi-comment' },
         { title: 'Management', to: '/dashboard/Management', icon: 'mdi-cog' }
       ]
+    }
+  },
+  props: {
+    isCollapsed: {
+      type: Boolean,
+      default: false
     }
   }
 }
