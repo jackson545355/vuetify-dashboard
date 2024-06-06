@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <div class="dashboard">
-      <Sidebar />
-      <div class="content">
-        <Header />
+      <Sidebar v-if="!isSidebarCollapsed"/>
+      <div class="content" :class="{ 'expanded': isSidebarCollapsed }">
+        <Header class="header" :class="{ 'expanded': isSidebarCollapsed }" @toggleSidebar="toggleSidebar"/>
         <v-main>
           <router-view />
         </v-main>
@@ -22,6 +22,16 @@ export default {
   components: {
     Sidebar,
     Header,
+  },
+  data() {
+    return {
+      isSidebarCollapsed: false
+    };
+  },
+  methods: {
+    toggleSidebar() {
+      this.isSidebarCollapsed = !this.isSidebarCollapsed;
+    }
   }
 }
 </script>

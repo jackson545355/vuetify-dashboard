@@ -22,4 +22,21 @@
 
 .bordered-image {
     border-radius: 1000px;
+}
+.toggle-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    border-radius: 5px;
+    border: 1px solid black;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+  
+  .toggle-button img {
+    width: 25px; /* Điều chỉnh kích thước của biểu tượng */
+    height: 25px;
   }
