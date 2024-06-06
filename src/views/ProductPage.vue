@@ -32,7 +32,7 @@
   </v-container>
 
   <!-- List card -->
-  <ProductList :projects="paginatedItems" />
+  <ProductList :projects="paginatedItems" @productDeleted="removeProduct" />
 
   <div class="pagination">
     <v-pagination v-model="page" :length="paginationLength" next-icon="mdi-menu-right"
@@ -54,7 +54,7 @@ export default {
       projects: [
         {
           id: 1,
-          image: './assets/images/logo.png',
+          image: 'https://th.bing.com/th/id/OIP.nNGCxcz7kwJehe-YvBjJzwHaGa?w=199&h=180&c=7&r=0&o=5&pid=1.7',
           name: 'HRGs',
           type: "Web",
           createDay: '20/10/2023',
@@ -62,7 +62,7 @@ export default {
         },
         {
           id: 2,
-          image: './assets/logo.png',
+          image: require('../assets/images/logo.png'),
           name: 'ABC',
           type: "Mobile App",
           createDay: '20/10/2023',
@@ -70,7 +70,7 @@ export default {
         },
         {
           id: 3,
-          image: './assets/logo.png',
+          image: require('../assets/images/logo.png'),
           name: 'GHJ',
           type: "Dashboard",
           createDay: '20/10/2023',
@@ -78,7 +78,7 @@ export default {
         },
         {
           id: 4,
-          image: './assets/logo.png',
+          image: require('../assets/images/logo.png'),
           name: 'HRGs',
           type: "Web",
           createDay: '20/10/2023',
@@ -86,7 +86,7 @@ export default {
         },
         {
           id: 5,
-          image: './assets/logo.png',
+          image: require('../assets/images/logo.png'),
           name: 'HRGs',
           type: "Web",
           createDay: '20/10/2023',
@@ -94,94 +94,14 @@ export default {
         },
         {
           id: 6,
-          image: './assets/logo.png',
+          image: require('../assets/images/logo.png'),
           name: 'HRGs',
           type: "Web",
           createDay: '20/10/2023',
           lastUpdate: '20/10/2023',
         },
-        {
-          id: 7,
-          image: './assets/logo.png',
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 8,
-          image: './assets/logo.png',
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 9,
-          image: './assets/logo.png',
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 10,
-          image: './assets/logo.png',
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 11,
-          image: './assets/logo.png',
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 12,
-          image: './assets/logo.png',
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 13,
-          image: './assets/logo.png',
-          name: 'ABC',
-          type: "Mobile App",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 14,
-          image: './assets/logo.png',
-          name: 'ABC',
-          type: "Mobile App",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 15,
-          image: './assets/logo.png',
-          name: 'ABC',
-          type: "Mobile App",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 16,
-          image: './assets/logo.png',
-          name: 'ABC',
-          type: "Mobile App",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
+        // Thêm các project khác ở đây
       ],
-
       filteredItems: [],
       loading: false,
       page: 1,
@@ -229,6 +149,10 @@ export default {
       // Navigate to Add Product page
       // Your navigation logic here
       this.$router.push({ name: 'AddProductStep1' })
+    },
+    removeProduct(id) {
+      this.projects = this.projects.filter(project => project.id !== id);
+      this.filterItems();
     },
   },
   mounted() {

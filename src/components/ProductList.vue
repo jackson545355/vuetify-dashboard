@@ -22,7 +22,7 @@
                     </v-list-item-avatar>
                     <v-list-item-title class="ml-2">Edit</v-list-item-title>
                   </v-list-item>
-                  <v-list-item @click="deleteItem(index)">
+                  <v-list-item @click="deleteItem(project.id)">
                     <v-list-item-avatar>
                       <v-icon color="red">mdi-delete</v-icon>
                     </v-list-item-avatar>
@@ -60,10 +60,29 @@ export default {
       // Add your edit logic here
       console.log("Edit item", index);
     },
-    deleteItem(index) {
-      // Add your delete logic here
-      console.log("Delete item", index);
+    async deleteItem(id) {
+      try {
+        // Gửi yêu cầu xóa sản phẩm tới server
+        // await axios.delete(`http://localhost:8081/products/${id}`);
+        // Sau khi xóa thành công, phát sự kiện 'productDeleted'
+        this.$emit('productDeleted', id);
+      } catch (error) {
+        console.error("Error deleting product:", error);
+      }
     },
+    async fetchProducts() {
+      try {
+        //const response = await axios.get("http://localhost:8081/products");
+        // this.projects = response.data;
+        // console.log(this.projects);
+        console.log(this.projects)
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    },
+  },
+  created() {
+    this.fetchProducts();
   },
 }
 </script>
