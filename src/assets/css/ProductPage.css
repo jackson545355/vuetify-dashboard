@@ -103,4 +103,8 @@
     border-radius: 32px;
     overflow: hidden;
   }
+
+  .header.expanded{
+    margin-left: 0;
+  }
   
