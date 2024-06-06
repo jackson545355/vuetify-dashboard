@@ -12,10 +12,8 @@
                 <span class="ml-3">{{ project.name }}</span>
               </div>
               <v-menu>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn icon v-bind="attrs" v-on="on">
-                    <v-icon>mdi-dots-vertical</v-icon>
-                  </v-btn>
+                <template v-slot:activator="{ props }">
+                  <v-btn icon="mdi-dots-vertical" v-bind="props"></v-btn>
                 </template>
                 <v-list class="rounded-list">
                   <v-list-item @click="editItem(index)">
