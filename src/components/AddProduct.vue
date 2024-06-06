@@ -10,10 +10,12 @@
     <div class="addstepcontent">
       <v-stepper class="step" :items="['Main Infor', 'Link & media', 'Launch']">
         <template v-slot:[`item.1`]>
-          <v-card title="We need to some information of new product" flat>
+          <v-card flat>
             <v-form>
               <v-card>
                 <v-card-text>
+                  <h1>We need to some information of new product</h1>
+                  <br/>
                   <h2>Basic</h2>
                   <br />
                   <h4>Product name <span class="redstar">*</span></h4>
