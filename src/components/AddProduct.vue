@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import "../assets/css/AddProductStep1.css";
 export default {
   name: "BreadcrumbExample",
@@ -99,6 +100,32 @@ export default {
       this.finished = true;
 
       alert("Finished");
+    },
+    validateForm() {
+      if (this.$refs.form.validate()) {
+        this.submitForm();
+      }
+    },
+    async submitForm() {
+      try {
+        //link API
+        const response = await axios.post('api/Product/add', {
+          productNameEn: this.productNameEn,
+          productNameJp: this.productNameJp,
+          shortDescriptionEn: this.shortDescriptionEn,
+          shortDescriptionJp: this.shortDescriptionJp,
+          fullDescriptionEn: this.fullDescriptionEn,
+          fullDescriptionJp: this.fullDescriptionJp,
+          status: this.status,
+          platformTag: this.platformTag,
+          technologyFramework: this.technologyFramework,
+          tool: this.tool
+        });
+        console.log('Product added:', response.data);
+        // this.step++;
+      } catch (error) {
+        console.error('Error adding product:', error);
+      }
     },
     nextStep() {
       // Xử lý logic cho bước tiếp theo
