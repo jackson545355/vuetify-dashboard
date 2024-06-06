@@ -103,14 +103,4 @@
     border-radius: 32px;
     overflow: hidden;
   }
-
-  .content.expanded {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .header.expanded{
-    margin-left:0;
-    width: 100%;
-  }
   

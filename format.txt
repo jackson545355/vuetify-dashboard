@@ -1,0 +1,10 @@
+PUT id
+
+data:{
+    NAME_ENG:
+    NAME_JP:    
+    SDESCRIPTION_ENG:
+    SDESCRIPTION_JP:
+    FDESCRIPTION_ENG:
+    FDESCRIPTION_JP:
+}
