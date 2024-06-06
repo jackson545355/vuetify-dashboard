@@ -1,0 +1,42 @@
+.breadcrumb-container {
+    padding: 0;
+    /* Loại bỏ padding mặc định của v-container */
+}
+
+.v-breadcrumbs {
+    justify-content: flex-start;
+    /* Căn chỉnh breadcrumb sang bên trái */
+}
+
+.custom-breadcrumbs-item {
+    text-decoration: none;
+}
+
+.custom-breadcrumbs-item:hover {
+    text-decoration: none;
+}
+.addstep1{
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 3px;
+}
+.addstepcontent{
+    height: 100%;
+    border-radius: 20px;
+    width: 90%;
+    margin: auto;
+}
+.addstepcontentleft{
+    flex-direction: 1;
+    width: 25%;
+    height: 100%;
+}
+.addstepcontentright{
+    flex-direction: 2;
+    width: 75%;
+    height: 100%;
+}
+.step{
+    border-radius: 20px;
+}

@@ -22,7 +22,12 @@ const routes = [
   {
     path:'/dashboard/Management',
     component: ManagementPage
-  }
+  },
+  {
+    path: '/dashboard/Product/add/step1',
+    name: 'AddProductStep1',
+    component: () => import('../components/AddProduct.vue'), // Thay bằng đường dẫn đến component AddProduct của bạn
+  },
 ]
 
 const router = createRouter({
