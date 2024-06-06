@@ -1,3 +1,12 @@
+h2{
+    color: gray;
+}
+
+.redstar {
+    color: red;
+    margin-left: 4px; /* Khoảng cách giữa chữ và dấu * */
+  }
+
 .breadcrumb-container {
     padding: 0;
     /* Loại bỏ padding mặc định của v-container */
