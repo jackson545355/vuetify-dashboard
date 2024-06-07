@@ -19,6 +19,12 @@ h2{
 
 .custom-breadcrumbs-item {
     text-decoration: none;
+    font-weight: 400;
+    font-size: 20px;
+}
+.icon{
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .custom-breadcrumbs-item:hover {

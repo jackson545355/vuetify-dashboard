@@ -31,12 +31,14 @@
     padding: 0;
     display: flex;
     border-radius: 5px;
-    border: 1px solid black;
-    cursor: pointer;
     margin-left: 20px;
   }
   
   .toggle-button img {
     width: 25px; /* Điều chỉnh kích thước của biểu tượng */
     height: 25px;
+  }
+
+  .v-navigation-drawer v-navigation-drawer--left v-navigation-drawer--active v-theme--light{
+    transform: translateX(0px); 
   }

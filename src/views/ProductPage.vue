@@ -53,135 +53,6 @@ export default {
       selectedType: '',
       types: ['All', 'Web', 'Mobile App', 'Dashboard'],
       projects: [
-        {
-          id: 1,
-          image: 'https://th.bing.com/th/id/OIP.nNGCxcz7kwJehe-YvBjJzwHaGa?w=199&h=180&c=7&r=0&o=5&pid=1.7',
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 2,
-          image: require('../assets/images/logo.png'),
-          name: 'ABC',
-          type: "Mobile App",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 3,
-          image: require('../assets/images/logo.png'),
-          name: 'GHJ',
-          type: "Dashboard",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 4,
-          image: require('../assets/images/logo.png'),
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 5,
-          image: require('../assets/images/logo.png'),
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-          id: 6,
-          image: require('../assets/images/logo.png'),
-          name: 'HRGs',
-          type: "Web",
-          createDay: '20/10/2023',
-          lastUpdate: '20/10/2023',
-        },
-        {
-        id: 7,
-        image: require('../assets/images/logo.png'),
-        name: 'HRGs',
-        type: "Web",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-    {
-        id: 8,
-        image: require('../assets/images/logo.png'),
-        name: 'HRGs',
-        type: "Web",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-    {
-        id: 9,
-        image: require('../assets/images/logo.png'),
-        name: 'HRGs',
-        type: "Web",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-    {
-        id: 10,
-        image: require('../assets/images/logo.png'),
-        name: 'HRGs',
-        type: "Web",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-    {
-        id: 11,
-        image: require('../assets/images/logo.png'),
-        name: 'HRGs',
-        type: "Web",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-    {
-        id: 12,
-        image: require('../assets/images/logo.png'),
-        name: 'HRGs',
-        type: "Web",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-    {
-        id: 13,
-        image: require('../assets/images/logo.png'),
-        name: 'ABC',
-        type: "Mobile App",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-    {
-        id: 14,
-        image: require('../assets/images/logo.png'),
-        name: 'ABC',
-        type: "Mobile App",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-    {
-        id: 15,
-        image: require('../assets/images/logo.png'),
-        name: 'ABC',
-        type: "Mobile App",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-    {
-        id: 16,
-        image: require('../assets/images/logo.png'),
-        name: 'ABC',
-        type: "Mobile App",
-        createDay: '20/10/2023',
-        lastUpdate: '20/10/2023',
-    },
-
         // Thêm các project khác ở đây
       ],
       filteredItems: [],
@@ -213,7 +84,8 @@ export default {
       this.loading = true;
       try {
         //link API
-        const response = await axios.get('/api/products');
+        const response = await axios.get('http://127.0.0.1:8080/product/');
+        console.log(response)
         this.projects = response.data;
         this.filteredItems = this.projects;
       } catch (error) {
@@ -252,6 +124,9 @@ export default {
   },
   mounted() {
     this.filteredItems = this.projects;
+  },
+  created() {
+    this.fetchProducts();
   },
 };
 </script>

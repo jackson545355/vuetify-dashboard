@@ -1,5 +1,7 @@
 <template>
-  <v-navigation-drawer app class="['sidebar', { collapsed: isCollapsed }]">
+  <v-navigation-drawer class="sidebar"
+    :class="{ collapsed: isCollapsed }"
+    >
     <v-list>
       <v-list-item class="sidebar-logo">
         <v-list-item-avatar>
@@ -15,7 +17,7 @@
           class="router-link"
           active-class="active-link"
         >
-          <v-list-item class="menu-item">
+          <v-list-item class="menu-item">       
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
@@ -48,6 +50,11 @@ export default {
       type: Boolean,
       default: false
     }
-  }
+  },
+  methods: {
+    onInput(val) {
+      this.drawer = val;
+    },
+  },
 }
 </script>

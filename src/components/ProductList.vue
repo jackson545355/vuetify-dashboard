@@ -9,7 +9,7 @@
                 <v-avatar size="50">
                   <v-img :src="project.image"></v-img>
                 </v-avatar>
-                <span class="ml-3">{{ project.name }}</span>
+                <span class="ml-3">{{ project.name_eng }}</span>
               </div>
               <v-menu>
                 <template v-slot:activator="{ props }">
@@ -47,13 +47,15 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'ProjectList',
-  props: {
-    projects: {
+  data() {
+    return {
+      projects: {
       type: Array,
-      required: true
     }
+    };
   },
   methods: {
     editItem(index) {
@@ -63,26 +65,13 @@ export default {
     async deleteItem(id) {
       try {
         // Gửi yêu cầu xóa sản phẩm tới server
-        // await axios.delete(`http://localhost:8081/products/${id}`);
+        await axios.patch(`http://127.0.0.1:8080/product/delete/${id}`);
         // Sau khi xóa thành công, phát sự kiện 'productDeleted'
-        this.$emit('productDeleted', id);
+        //this.$emit('productDeleted', id);
       } catch (error) {
         console.error("Error deleting product:", error);
       }
     },
-    async fetchProducts() {
-      try {
-        //const response = await axios.get("http://localhost:8081/products");
-        // this.projects = response.data;
-        // console.log(this.projects);
-        console.log(this.projects)
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    },
-  },
-  created() {
-    this.fetchProducts();
-  },
+  }
 }
 </script>
