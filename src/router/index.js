@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import ProductPage from '../views/ProductPage.vue'
 import CommentsPage from '../views/CommentsPage.vue'
-import MasterItems from '../views/MasterItemsPage.vue'
+import MasterItems from '../views/MasterItems.vue'
 
 // Vue.use(VueRouter)
 
