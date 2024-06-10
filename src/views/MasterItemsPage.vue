@@ -1,20 +1,18 @@
 <template>
-    <div class="data-table-container">
+  <div class="data-table-container">
     <v-toolbar flat>
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
         label="Search"
-        single-line
         hide-details
         class="search-bar"
+        single-line
         outlined
       ></v-text-field>
       <v-spacer></v-spacer>
-      <v-btn color="red" class="mx-2" @click="deleteSelected">
-        Delete
-      </v-btn>
-      <v-btn color="black" class="mx-2" @click="addTechnology">
+      <v-btn color="red" class="mx-2" @click="deleteSelected">Delete</v-btn>
+      <v-btn color="black" class="mx-2" @click="dialog = true">
         <v-icon left>mdi-plus</v-icon>
         Add technology
       </v-btn>
@@ -75,13 +73,61 @@
         />
       </template>
     </v-data-table>
+
+    <!-- Dialog for adding technology -->
+    <v-dialog v-model="dialog" max-width="600px">
+      <v-card>
+        <v-card-title>
+          <span class="headline">Add Technology</span>
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="form" v-model="valid">
+            <v-row>
+              <v-col cols="12" sm="6">
+                <v-file-input
+                  v-model="logo"
+                  label="Logo"
+                  prepend-icon="mdi-upload"
+                  accept="image/png, image/jpeg, image/svg+xml"
+                  outlined
+                  required
+                ></v-file-input>
+                <v-img :src="logo" max-height="100" max-width="100" class="mt-2"></v-img>
+                <small class="caption">
+                  Logo must be .SVG or PNG
+                  <br />
+                  Recommended size 240 x 240 px
+                </small>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-text-field
+                  v-model="technologyName"
+                  label="Technology name"
+                  outlined
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="black" text @click="dialog = false">Cancel</v-btn>
+          <v-btn color="black" :disabled="!valid" @click="saveTechnology">Edit</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
-  </template>
+</template>
 
 <script>
-export default {
+  export default {
     data() {
       return {
+        dialog: false,
+        valid: false,
+        logo: '',
+        technologyName: '',
         selected: [],
         itemsPerPage: 10,
         options: {},
@@ -135,8 +181,16 @@ export default {
         this.selected = []
       },
       addTechnology() {
-        // Hàm thêm công nghệ mới
-        console.log('Add technology')
+        // Mở dialog thêm công nghệ
+        this.dialog = true
+      },
+      saveTechnology() {
+        // Lưu công nghệ mới
+        this.items.push({
+          name: this.technologyName,
+          icon: this.logo,
+        })
+        this.dialog = false
       },
       onOptionsUpdate(newOptions) {
         this.options = newOptions
@@ -210,4 +264,3 @@ export default {
     --v-field-border-width: 0px;
   }
 </style>
-  
