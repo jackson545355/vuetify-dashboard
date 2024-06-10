@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import ProductPage from '../views/ProductPage.vue'
 import CommentsPage from '../views/CommentsPage.vue'
-import ManagementPage from '../views/ManagementPage.vue'
+import MasterItems from '../views/MasterItemsPage.vue'
 
 // Vue.use(VueRouter)
 
@@ -20,8 +20,8 @@ const routes = [
     component: CommentsPage
   },
   {
-    path:'/dashboard/Management',
-    component: ManagementPage
+    path:'/dashboard/MasterItems',
+    component: MasterItems
   },
   {
     path: '/dashboard/Product/add/step1',

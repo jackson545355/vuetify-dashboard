@@ -41,7 +41,7 @@ export default {
         { title: 'Home', to: '/dashboard/Home', icon: 'mdi-home' },
         { title: 'Products', to: '/dashboard/Product', icon: 'mdi-package' },
         { title: 'Comments', to: '/dashboard/Comments', icon: 'mdi-comment' },
-        { title: 'Management', to: '/dashboard/Management', icon: 'mdi-cog' }
+        { title: 'Master Items', to: '/dashboard/MasterItems', icon: 'mdi-cog' }
       ]
     }
   },
