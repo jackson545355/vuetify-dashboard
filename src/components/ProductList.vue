@@ -6,7 +6,7 @@
           <v-card-title class="card-header">
             <div class="d-flex align-center justify-space-between" style="width: 100%;">
               <div class="d-flex align-center">
-                <v-avatar size="50">  
+                <v-avatar size="50">
                   <v-img src="https://cdn.vuetifyjs.com/images/john.jpg"></v-img>
                 </v-avatar>
                 <span class="ml-3">{{ product.name_eng }}</span>
@@ -43,6 +43,36 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <v-dialog v-model="editDialog" max-width="800px">
+      <v-card>
+        <v-card-title>
+          <span class="headline">Edit Product</span>
+        </v-card-title>
+        <v-card-text>
+          <v-form ref="form">
+            <h1>Please edit your information!</h1>
+            <br />
+            <h2>Basic</h2>
+            <br />
+            <h4>Product name</h4>
+            <v-text-field label="English" v-model="productNameEn"></v-text-field>
+            <v-text-field label="日本語" v-model="productNameJp"></v-text-field>
+            <h4>Short description</h4>
+            <v-text-field label="English" v-model="shortDescriptionEn"></v-text-field>
+            <v-text-field label="日本語" v-model="shortDescriptionJp"></v-text-field>
+            <h4>Full description</h4>
+            <v-textarea label="English" v-model="fullDescriptionEn"></v-textarea>
+            <v-textarea label="日本語" v-model="fullDescriptionJp"></v-textarea>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" @click="validateForm">Submit</v-btn>
+          <v-btn color="secondary" @click="editDialog = false">Cancel</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -57,39 +87,80 @@ export default {
       required: true,
     }
   },
+  data() {
+    return {
+      editDialog: false,
+      productIndex: null,
+      productId: null,
+      productNameEn: '',
+      productNameJp: '',
+      shortDescriptionEn: '',
+      shortDescriptionJp: '',
+      fullDescriptionEn: '',
+      fullDescriptionJp: '',
+    };
+  },
   methods: {
     editItem(index) {
-      // Add your edit logic here
-      console.log("Edit item", index);
+      const product = this.projects[index];
+      this.productIndex = index;
+      this.productId = product.ID;
+      this.productNameEn = product.name_eng;
+      this.productNameJp = product.name_jp;
+      this.shortDescriptionEn = product.sdescription_eng;
+      this.shortDescriptionJp = product.sdescription_jp;
+      this.fullDescriptionEn = product.fdescription_eng;
+      this.fullDescriptionJp = product.fdescription_jp;
+      this.editDialog = true;
     },
     async deleteItem(id) {
       try {
-        // Gửi yêu cầu xóa sản phẩm tới server
         await axios.patch(`http://127.0.0.1:8080/product/delete/${id}`);
-        // Sau khi xóa thành công, phát sự kiện 'productDeleted'
-         this.$emit('productDeleted', id);
+        this.$emit('productDeleted', id);
       } catch (error) {
         console.error("Error deleting product:", error);
+      }
+    },
+    validateForm() {
+      if (this.$refs.form.validate()) {
+        this.submitForm();
+      } else {
+        console.warn('Form validation failed');
+      }
+    },
+    async submitForm() {
+      try {
+        const product = {
+          name_eng: this.productNameEn,
+          name_jp: this.productNameJp,
+          sdescription_eng: this.shortDescriptionEn,
+          sdescription_jp: this.shortDescriptionJp,
+          fdescription_eng: this.fullDescriptionEn,
+          fdescription_jp: this.fullDescriptionJp,
+        };
+        console.log('Submitting form with data:', product);
+        const response = await axios.patch(`http://127.0.0.1:8080/product/edit/${this.productId}`, { data: product });
+        console.log('Product updated:', response.data);
+        if (response.status === 200) {
+          this.$emit('productUpdated', this.productIndex, product);
+          this.editDialog = false;
+          window.location.reload();
+        } else {
+          console.error('Failed to update product:', response);
+        }
+      } catch (error) {
+        console.error('Error editing product:', error);
       }
     },
     formatDate(dateString) {
       const date = new Date(dateString);
       const day = date.getDate();
-      const month = date.getMonth() + 1; // getMonth() trả về giá trị từ 0-11, cần +1 để đúng với tháng
+      const month = date.getMonth() + 1;
       const year = date.getFullYear();
       return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`;
     }
-  },
-  data(){
-    return{
-      image: [
-        { src: require("../assets/images/vn_flag.jpg"), alt: "Logo" },]
-    }
-  },
-  // created() {
-  //   this.$emit('fetchProducts');
-  // },
-}
+  }
+};
 </script>
 
 <style>

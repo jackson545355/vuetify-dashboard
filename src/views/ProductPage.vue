@@ -19,7 +19,7 @@
       <v-col cols="12" sm="6" md="4" class="filter">
         <!-- Filter dropdown -->
         <v-select v-model="selectedType" :items="types" label="Filter by Type" clearable density="compact"
-          varriant="solo-inverted" @change="filterItems"></v-select>
+          varriant="solo" oulined @change="filterItems"></v-select>
       </v-col>
 
       <v-col cols="12" sm="6" md="4" class="text-right">
