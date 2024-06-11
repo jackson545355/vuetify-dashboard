@@ -6,39 +6,27 @@
       </v-col>
     </v-row>
     <v-tabs v-model="tab" class="tabs">
-      <v-tab key="technologies">Technologies</v-tab>
-      <v-tab key="tools">Tools</v-tab>
-      <v-tab key="platforms">Platforms</v-tab>
+      <v-tab to="/dashboard/MasterItems/technologies">Technologies</v-tab>
+      <v-tab to="/dashboard/MasterItems/tools">Tools</v-tab>
+      <v-tab to="/dashboard/MasterItems/platforms">Platforms</v-tab>
     </v-tabs>
     <br/>
     <v-tabs-items v-model="tab">
-      <v-tab-item key="technologies">
-        <Technologies />
-      </v-tab-item>
-      <v-tab-item key="tools">
-        <Tools />
-      </v-tab-item>
-      <v-tab-item key="platforms">
-        <Platforms />
-      </v-tab-item>
+      <router-view />
     </v-tabs-items>
   </v-container>
 </template>
 
 <script>
-import Technologies from '../components/Technologies.vue'
-import Tools from '../components/Tools.vue'
-import Platforms from '../components/Platforms.vue'
-
 export default {
-  components: {
-    Technologies,
-    Tools,
-    Platforms,
-  },
   data() {
     return {
-      tab: 'technologies', // Chọn tab mặc định là 'technologies'
+      tab: this.$route.path.split('/').pop(), // Lấy tên tab từ URL
+    }
+  },
+  watch: {
+    '$route'(to) {
+      this.tab = to.path.split('/').pop()
     }
   },
 }

@@ -7,7 +7,7 @@
             <v-spacer></v-spacer>
             <div class="btn-container">
                 <v-btn color="red" class="mx-2" variant="elevated" size="large" @click="openDeleteSelectedDialog" :disabled="selected.length === 0">Delete</v-btn>
-                <v-btn color="black" class="mx-2" variant="elevated" size="large" @click="dialog = true">
+                <v-btn color="black" class="mx-2" variant="elevated" size="large" @click="openAddDialog">
                     <v-icon left>mdi-plus</v-icon>
                     Add technology
                 </v-btn>
@@ -58,21 +58,46 @@
                 </tr>
             </template>
             <template v-slot:footer>
-                <v-data-footer :pagination="pagination" :items-per-page-text="$t('global.itemsPerPageText')"
-                    @update:options="onOptionsUpdate" class="pagination" />
+                <v-container>
+                    <v-row justify="space-between" align="center">
+                        <v-col class="d-flex align-center">
+                            <v-select
+                              v-model="itemsPerPage"
+                              :items="itemsPerPageOptions"
+                              class="mr-2"
+                              hide-details
+                              dense
+                              outlined
+                              :style="{ width: '60px' }"
+                            />
+                            <span>{{ itemsPerPage }} items per page</span>
+                        </v-col>
+                        <v-col class="text-end">
+                            <v-pagination
+                              v-model="page"
+                              :length="pagination.length"
+                              :total-visible="7"
+                              prev-icon="mdi-chevron-left"
+                              next-icon="mdi-chevron-right"
+                              class="pagination-custom"
+                            ></v-pagination>
+                        </v-col>
+                    </v-row>
+                </v-container>
             </template>
         </v-data-table>
     </div>
 
-    <!-- Dialog for adding technology -->
-    <v-dialog v-model="dialog" max-width="600px" class="ma-20">
+    <!-- Dialog for adding or editing technology -->
+    <v-dialog v-model="addDialog" max-width="600px" class="ma-20">
         <v-card rounded="lg">
             <v-card-title>
-                <span class="headline">Add Technology</span>
+                <span class="headline">{{ editMode ? 'Edit' : 'Add' }} Technology</span>
             </v-card-title>
             <v-card-text>
                 <v-form ref="form" v-model="valid">
                     <v-row>
+                        <v-col cols="12"><h4>Logo <span class="redstar">*</span></h4></v-col>
                         <v-col cols="12" sm="3">
                             <v-img :src="logo || require('../assets/images/defaultLogo.png')" max-height="100"
                                 max-width="100" class="mt-2"></v-img>
@@ -87,8 +112,8 @@
                                 Recommended size 240 x 240 px
                             </small>
                         </v-col>
-
-                        <v-col>
+                        <v-col cols="12"><h4>Technology name <span class="redstar">*</span></h4></v-col>
+                        <v-col cols="12">
                             <v-text-field v-model="technologyName" label="Technology name" variant="outlined"
                                 :rules="[v => !!v || 'Technology name is required']" required></v-text-field>
                         </v-col>
@@ -97,21 +122,21 @@
             </v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="black" size="large" text @click="dialog = false">Cancel</v-btn>
+                <v-btn color="black" size="large" text @click="addDialog = false">Cancel</v-btn>
                 <v-btn color="black" size="large" variant="elevated" :disabled="!valid"
-                    @click="saveTechnology">Add</v-btn>
+                    @click="editMode ? updateTechnology() : saveTechnology()">Save</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
 
     <!-- Dialog for deleting technology -->
-    <v-dialog v-model="itemDialog" max-width="500" class="ma-20">
+    <v-dialog v-model="deleteDialog" max-width="500" class="ma-20">
         <v-card rounded="lg">
             <v-card-title class="headline">Confirm Delete</v-card-title>
             <v-card-text>Are you sure you want to delete this technology?</v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="black" text @click="itemDialog = false">Cancel</v-btn>
+                <v-btn color="black" text @click="deleteDialog = false">Cancel</v-btn>
                 <v-btn color="red" variant="elevated" text v-if="selected.length === 0" @click="confirmDelete">Confirm</v-btn>
                 <v-btn color="red" variant="elevated" text v-else @click="confirmDeleteSelected">Confirm</v-btn>
             </v-card-actions>
@@ -135,18 +160,27 @@ export default {
     data() {
         return {
             //Delete data
-            itemDialog: false,
+            deleteDialog: false,
             itemToDelete: null,
             snackbar: false,
-            //Orther
-            dialog: false,
+            //Edit mode
+            editMode: false,
+            editItemData: null,
+
+            //Add/Edit data (add and edit method using the same dialog)
+            addDialog: false,
             valid: false,
             logo: '',
+            logoFile: null,
             technologyName: '',
-            selected: [],
+            //Pagination
             itemsPerPage: 10,
-            options: {},
-            pagination: {},
+            itemsPerPageOptions: [10, 20, 30, 40, 50],
+            page: 1,
+            pagination: {
+                length: 1,
+            },
+            //Data table
             search: '',
             headers: [
                 { text: 'No.', align: 'start', sortable: false, value: 'no' },
@@ -161,9 +195,12 @@ export default {
                 },
                 {
                     name: 'Java',
-                    icon: 'https://cdn.vuetifyjs.com/images/logos/java.svg',
+                    icon: require('../assets/images/javaIcon.jpg'),
                 },
             ],
+            
+            //Other
+            selected: [],
         }
     },
     computed: {
@@ -182,70 +219,86 @@ export default {
                 this.selected = [];
             }
         },
-        // Edit item methob
+        // Open add dialog
+        openAddDialog() {
+            this.resetForm();
+            this.addDialog = true;
+            this.editMode = false;
+        },
+        // Open edit dialog
         editItem(item) {
-            console.log('Edit', item)
+            this.resetForm();
+            this.addDialog = true;
+            this.editMode = true;
+            this.editItemData = item;
+            this.logo = item.icon;
+            this.technologyName = item.name;
         },
-        // Delele item method
-        openDeleteDialog(item) {
-            this.itemToDelete = item;
-            this.itemDialog = true;
+        // Reset edit/add form
+        resetForm() {
+            this.logo = '';
+            this.logoFile = null;
+            this.technologyName = '';
+            this.editItemData = null;
         },
-        confirmDelete() {
-            this.itemDialog = false;
-            this.snackbar = true;
-            this.deleteItem(this.itemToDelete);
-
-        },
-        deleteItem(item) {
-            const index = this.items.indexOf(item)
-            // this.items.splice(index, 1)
-            if (index > -1) {
-                this.items.splice(index, 1);
-            }
-        },
-        // Delete selected item method
-        openDeleteSelectedDialog() {
-            this.itemDialog = true;
-        },
-        confirmDeleteSelected() {
-            this.itemDialog = false;
-            this.snackbar = true;
-            this.deleteSelected();
-
-        },
-        deleteSelected() {
-            this.selected.forEach(item => {
-                const index = this.items.indexOf(item)
-                if (index > -1) {
-                    this.items.splice(index, 1)
-                }
-            })
-            this.selected = []
-        },
-
-        // Add item method
-        addTechnology() {
-            this.dialog = true
-        },
+        // Handle file change
         onFileChange(e) {
             const file = e.target.files[0];
             if (file) {
                 this.logo = URL.createObjectURL(file);
             }
         },
+        // Save technology
         saveTechnology() {
             this.items.push({
                 name: this.technologyName,
                 icon: this.logo,
-            })
-            this.dialog = false
-            this.logoFile = null;
-            this.logo = '';
-            this.technologyName = '';
+            });
+            this.addDialog = false;
+            this.resetForm();
         },
-        onOptionsUpdate(newOptions) {
-            this.options = newOptions
+        // Update technology
+        updateTechnology() {
+            if (this.editItemData) {
+                this.editItemData.name = this.technologyName;
+                this.editItemData.icon = this.logo;
+            }
+            this.addDialog = false;
+            this.resetForm();
+        },
+        // Delete item
+        openDeleteDialog(item) {
+            this.itemToDelete = item;
+            this.deleteDialog = true;
+        },
+        confirmDelete() {
+            this.deleteDialog = false;
+            this.snackbar = true;
+            this.deleteItem(this.itemToDelete);
+        },
+        deleteItem(item) {
+            const index = this.items.indexOf(item);
+            if (index > -1) {
+                this.items.splice(index, 1);
+            }
+        },
+        // Delete selected items
+        openDeleteSelectedDialog() {
+            this.deleteDialog = true;
+        },
+        confirmDeleteSelected() {
+            this.deleteDialog = false;
+            this.snackbar = true;
+            this.deleteSelected();
+        },
+        deleteSelected() {
+            this.selected.forEach(item => {
+                const index = this.items.indexOf(item);
+                if (index > -1) {
+                    this.items.splice(index, 1);
+                }
+            });
+            this.selected = [];
         },
     },
 }
