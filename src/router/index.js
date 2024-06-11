@@ -3,8 +3,9 @@ import HomePage from '../views/HomePage.vue'
 import ProductPage from '../views/ProductPage.vue'
 import CommentsPage from '../views/CommentsPage.vue'
 import MasterItems from '../views/MasterItems.vue'
-
-// Vue.use(VueRouter)
+import Technologies from '../components/Technologies.vue'
+import Tools from '../components/Tools.vue'
+import Platforms from '../components/Platforms.vue'
 
 const routes = [
   {
@@ -21,7 +22,22 @@ const routes = [
   },
   {
     path:'/dashboard/MasterItems',
-    component: MasterItems
+    component: MasterItems,
+    redirect: '/dashboard/MasterItems/technologies',
+    children: [
+      {
+        path: 'technologies',
+        component: Technologies
+      },
+      {
+        path: 'tools',
+        component: Tools
+      },
+      {
+        path: 'platforms',
+        component: Platforms
+      }
+    ]
   },
   {
     path: '/dashboard/Product/add/step1',

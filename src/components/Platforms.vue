@@ -2,39 +2,33 @@
 <template>
     <div class="data-table-container">
         <v-toolbar flat color="white">
-            <v-text-field v-model="search" append-icon="mdi-magnify" label="Search Technology" hide-details
+            <v-text-field v-model="search" append-icon="mdi-magnify" label="Search Platforms" hide-details
                 class="search-bar" single-line outlined></v-text-field>
             <v-spacer></v-spacer>
             <div class="btn-container">
-                <v-btn color="red" class="mx-2" variant="elevated" size="large" @click="openDeleteSelectedDialog" :disabled="selected.length === 0">Delete</v-btn>
+                <v-btn color="red" class="mx-2" variant="elevated" size="large" @click="openDeleteSelectedDialog"
+                    :disabled="selected.length === 0">Delete</v-btn>
                 <v-btn color="black" class="mx-2" variant="elevated" size="large" @click="openAddDialog">
                     <v-icon left>mdi-plus</v-icon>
-                    Add technology
+                    Add Platform
                 </v-btn>
             </div>
         </v-toolbar>
 
         <br />
 
-        <v-data-table 
-            v-model="selected" 
-            :headers="headers" 
-            :items="filteredItems" 
-            item-value="name" 
-            show-select
-            class="elevation-1" 
-            :items-per-page="itemsPerPage" 
-            :search="search">
+        <v-data-table v-model="selected" :headers="headers" :items="filteredItems" item-value="name" show-select
+            class="elevation-1" :items-per-page="itemsPerPage" :search="search">
             <template v-slot:headers="props">
                 <tr class="custom-header">
                     <th class="text-left custom-checkbox-cell" style="width: 5%">
-                        <v-checkbox v-model="props.all" :indeterminate="props.indeterminate" 
-                        @click="selectAll" hide-details></v-checkbox>
+                        <v-checkbox v-model="props.all" :indeterminate="props.indeterminate" @click="selectAll"
+                            hide-details></v-checkbox>
                     </th>
                     <th class="text-left" style="width: 5%">No.</th>
-                    <th class="text-left" style="width: 10%">Icon</th>
-                    <th class="text-center" style="width: 40%">Name</th>
-                    <th class="text-center custom-action-cell" style="width: 40%">Action</th>
+                    <th class="text-left" style="width: 0%"></th>
+                    <th class="text-center" style="width: 45%">Name</th>
+                    <th class="text-center custom-action-cell" style="width: 45%">Action</th>
                 </tr>
             </template>
             <template v-slot:item="{ item, index }">
@@ -61,26 +55,14 @@
                 <v-container>
                     <v-row justify="space-between" align="center">
                         <v-col class="d-flex align-center">
-                            <v-select
-                              v-model="itemsPerPage"
-                              :items="itemsPerPageOptions"
-                              class="mr-2"
-                              hide-details
-                              dense
-                              outlined
-                              :style="{ width: '60px' }"
-                            />
+                            <v-select v-model="itemsPerPage" :items="itemsPerPageOptions" class="mr-2" hide-details
+                                dense outlined :style="{ width: '60px' }" />
                             <span>{{ itemsPerPage }} items per page</span>
                         </v-col>
                         <v-col class="text-end">
-                            <v-pagination
-                              v-model="page"
-                              :length="pagination.length"
-                              :total-visible="7"
-                              prev-icon="mdi-chevron-left"
-                              next-icon="mdi-chevron-right"
-                              class="pagination-custom"
-                            ></v-pagination>
+                            <v-pagination v-model="page" :length="pagination.length" :total-visible="7"
+                                prev-icon="mdi-chevron-left" next-icon="mdi-chevron-right"
+                                class="pagination-custom"></v-pagination>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -88,34 +70,19 @@
         </v-data-table>
     </div>
 
-    <!-- Dialog for adding or editing technology -->
+    <!-- Dialog for adding or editing Platforms -->
     <v-dialog v-model="addDialog" max-width="600px" class="ma-20">
         <v-card rounded="lg">
             <v-card-title>
-                <span class="headline">{{ editMode ? 'Edit' : 'Add' }} Technology</span>
+                <span class="headline">{{ editMode ? 'Edit' : 'Add' }} Platforms</span>
             </v-card-title>
             <v-card-text>
                 <v-form ref="form" v-model="valid">
                     <v-row>
                         <v-col cols="12"><h4>Logo <span class="redstar">*</span></h4></v-col>
-                        <v-col cols="12" sm="3">
-                            <v-img :src="logo || require('../assets/images/defaultLogo.png')" max-height="100"
-                                max-width="100" class="mt-2"></v-img>
-                        </v-col>
-                        <v-col cols="12" sm="9">
-                            <v-file-input v-model="logoFile" label="Logo" prepend-icon="mdi-upload"
-                                accept="image/png, image/jpeg, image/svg+xml" outlined variant="outlined" required
-                                @change="onFileChange"></v-file-input>
-                            <small class="caption">
-                                Logo must be .SVG or PNG
-                                <br />
-                                Recommended size 240 x 240 px
-                            </small>
-                        </v-col>
-                        <v-col cols="12"><h4>Technology name <span class="redstar">*</span></h4></v-col>
                         <v-col cols="12">
-                            <v-text-field v-model="technologyName" label="Technology name" variant="outlined"
-                                :rules="[v => !!v || 'Technology name is required']" required></v-text-field>
+                            <v-text-field v-model="platformName" label="Platform name" variant="outlined"
+                            :rules="[v => !!v || 'Platform name is required']" required></v-text-field>
                         </v-col>
                     </v-row>
                 </v-form>
@@ -124,28 +91,29 @@
                 <v-spacer></v-spacer>
                 <v-btn color="black" size="large" text @click="addDialog = false">Cancel</v-btn>
                 <v-btn color="black" size="large" variant="elevated" :disabled="!valid"
-                    @click="editMode ? updateTechnology() : saveTechnology()">Save</v-btn>
+                    @click="editMode ? updatePlatform() : savePlatform()">Save</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
 
-    <!-- Dialog for deleting technology -->
+    <!-- Dialog for deleting Platform -->
     <v-dialog v-model="deleteDialog" max-width="500" class="ma-20">
         <v-card rounded="lg">
             <v-card-title class="headline">Confirm Delete</v-card-title>
-            <v-card-text>Are you sure you want to delete this technology?</v-card-text>
+            <v-card-text>Are you sure you want to delete this Platform?</v-card-text>
             <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="black" text @click="deleteDialog = false">Cancel</v-btn>
-                <v-btn color="red" variant="elevated" text v-if="selected.length === 0" @click="confirmDelete">Confirm</v-btn>
+                <v-btn color="red" variant="elevated" text v-if="selected.length === 0"
+                    @click="confirmDelete">Confirm</v-btn>
                 <v-btn color="red" variant="elevated" text v-else @click="confirmDeleteSelected">Confirm</v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
 
-    <!-- Notification for deleted a Technology -->
+    <!-- Notification for deleted a Platform -->
     <v-snackbar v-model="snackbar" timeout="3000" top right>
-        Technology has been deleted
+        Platform has been deleted
         <template v-slot:actions>
             <v-btn color="red" variant="text" @click="snackbar = false">
                 Close
@@ -170,9 +138,7 @@ export default {
             //Add/Edit data (add and edit method using the same dialog)
             addDialog: false,
             valid: false,
-            logo: '',
-            logoFile: null,
-            technologyName: '',
+            platformName: '',
             //Pagination
             itemsPerPage: 10,
             itemsPerPageOptions: [10, 20, 30, 40, 50],
@@ -184,21 +150,18 @@ export default {
             search: '',
             headers: [
                 { text: 'No.', align: 'start', sortable: false, value: 'no' },
-                { text: 'Icon', value: 'icon' },
                 { text: 'Name', value: 'name' },
                 { text: 'Action', value: 'action', sortable: false },
             ],
             items: [
                 {
-                    name: 'Vue.js',
-                    icon: 'https://cdn.vuetifyjs.com/images/logos/logo.svg',
+                    name: 'App',
                 },
                 {
-                    name: 'Java',
-                    icon: require('../assets/images/javaIcon.jpg'),
+                    name: 'Web',
                 },
             ],
-            
+
             //Other
             selected: [],
         }
@@ -231,37 +194,25 @@ export default {
             this.addDialog = true;
             this.editMode = true;
             this.editItemData = item;
-            this.logo = item.icon;
-            this.technologyName = item.name;
+            this.platformName = item.name;
         },
         // Reset edit/add form
         resetForm() {
-            this.logo = '';
-            this.logoFile = null;
-            this.technologyName = '';
+            this.platformName = '';
             this.editItemData = null;
         },
-        // Handle file change
-        onFileChange(e) {
-            const file = e.target.files[0];
-            if (file) {
-                this.logo = URL.createObjectURL(file);
-            }
-        },
-        // Save technology
-        saveTechnology() {
+        // Save Platform
+        savePlatform() {
             this.items.push({
-                name: this.technologyName,
-                icon: this.logo,
+                name: this.platformName,
             });
             this.addDialog = false;
             this.resetForm();
         },
-        // Update technology
-        updateTechnology() {
+        // Update Platform
+        updatePlatform() {
             if (this.editItemData) {
-                this.editItemData.name = this.technologyName;
-                this.editItemData.icon = this.logo;
+                this.editItemData.name = this.platformName;
             }
             this.addDialog = false;
             this.resetForm();

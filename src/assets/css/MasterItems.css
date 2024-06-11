@@ -61,6 +61,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
   .pagination .v-data-footer__select {
     margin-right: auto;
@@ -96,4 +98,7 @@
   .v-field__outline {
     --v-field-border-width: 0px;
   }
+  .redstar {
+  color: red;
+}
   
