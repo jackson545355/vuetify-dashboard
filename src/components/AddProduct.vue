@@ -7,106 +7,79 @@
       </v-breadcrumbs-item>
     </v-breadcrumbs>
     <div class="addstepcontent">
-      <v-card flat>
-        <v-form ref="form">
-          <v-card-text>
-            <h1>We need some information of new product!</h1>
-            <br />
-            <h2>Basic</h2>
-            <br />
-            <h4>Product name <span class="redstar">*</span></h4>
-            <v-text-field label="English" v-model="productNameEn" required
-              :rules="[v => !!v || 'Product Name is required']"></v-text-field>
-            <v-text-field label="日本語" v-model="productNameJp" required :rules="[v => !!v || '製品名は必須です']"></v-text-field>
-            <h4>Short description <span class="redstar">*</span></h4>
-            <v-text-field label="English" v-model="shortDescriptionEn" required
-              :rules="[v => !!v || 'Short description is required']"></v-text-field>
-            <v-text-field label="日本語" v-model="shortDescriptionJp" required
-              :rules="[v => !!v || '簡単な説明が必要です']"></v-text-field>
-            <h4>Full description <span class="redstar">*</span></h4>
-            <v-textarea label="English" v-model="fullDescriptionEn" required
-              :rules="[v => !!v || 'Full description is required']"></v-textarea>
-            <v-textarea label="日本語" v-model="fullDescriptionJp" required
-              :rules="[v => !!v || '完全な説明が必要です']"></v-textarea>
-            <h2>Status <span class="redstar">*</span></h2>
-            <br />
-            <v-radio-group v-model="status" :rules="[v => !!v || 'Status is required']" row>
-              <v-radio label="Demo" value="demo"></v-radio>
-              <v-radio label="Implementing" value="implementing"></v-radio>
-            </v-radio-group>
-            <h2>Techniques</h2>
-            <br />
-            <h4>Platform Tag <span class="redstar">*</span></h4>
-            <v-select :items="platformTags" label="Platform Tag" v-model="platformTag" required
-              :rules="[v => !!v || 'Platform Tag is required']"></v-select>
-            <h4>Technology Framework <span class="redstar">*</span></h4>
-            <v-select :items="technologyFrameworks" label="Technology Frameworks" v-model="technologyFramework" required
-              :rules="[v => !!v || 'Platform Tag is required']"></v-select>
-            <h4>Tools <span class="redstar">*</span></h4>
-            <v-select :items="tools" label="Tool" v-model="tool" required
-              :rules="[v => !!v || 'Platform Tag is required']"></v-select>
-            <h4 style="color: grey; text-align:center;">Click the button below to submit the product information.</h4>
-            <v-btn color="primary" @click="validateForm">Submit</v-btn>
-          </v-card-text>
-        </v-form>
-      </v-card>
+      <v-stepper v-model="activeStep">
+        <v-stepper-header>
+          <v-stepper-step :complete="activeStep > 1" step="1">Main Info</v-stepper-step>
+          <v-stepper-step :complete="activeStep > 2" step="2">Link & Media</v-stepper-step>
+          <v-stepper-step step="3">Launch</v-stepper-step>
+        </v-stepper-header>
+
+        <v-stepper-items>
+          <v-stepper-content step="1">
+            <step1 v-if="activeStep === 1" ref="step1"></step1>
+            <v-btn @click="nextStep">Next</v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="2">
+            <step2 v-if="activeStep === 2" ref="step2"></step2>
+            <v-btn @click="prevStep">Back</v-btn>
+            <v-btn @click="nextStep">Next</v-btn>
+          </v-stepper-content>
+
+          <v-stepper-content step="3">
+            <step3 v-if="activeStep === 3" ref="step3"></step3>
+            <v-btn @click="prevStep">Back</v-btn>
+            <v-btn @click="submitForm">Submit</v-btn>
+          </v-stepper-content>
+        </v-stepper-items>
+      </v-stepper>
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Step1 from './Step1.vue';
+import Step2 from './Step2.vue';
+import Step3 from './Step3.vue';
 import "../assets/css/AddProductStep1.css";
+
 export default {
-  name: "BreadcrumbExample",
+  name: "AddProduct",
+  components: {
+    Step1,
+    Step2,
+    Step3
+  },
   data: () => ({
-    productNameEn: '',
-    productNameJp: '',
-    shortDescriptionEn: '',
-    shortDescriptionJp: '',
-    fullDescriptionEn: '',
-    fullDescriptionJp: '',
-    status: '',
-    platformTag: '',
-    technologyFramework: '',
-    tool: '',
-    platformTags: ['Tag1', 'Tag2', 'Tag3'],
-    technologyFrameworks: ['Framework1', 'Framework2', 'Framework3'],
-    tools: ['Tool1', 'Tool2', 'Tool3'],
+    activeStep: 1,
   }),
   methods: {
-    validateForm() {
-      if (this.$refs.form.validate()) {
-        this.submitForm();
-      }
-      else {
-        console.warn('Form validation failed');
-      }
+    nextStep() {
+      this.activeStep++;
+    },
+    prevStep() {
+      this.activeStep--;
     },
     async submitForm() {
       try {
-        console.log('Submitting form with data:', {
-          name_eng: this.productNameEn,
-          name_jp: this.productNameJp,
-          sdescription_eng: this.shortDescriptionEn,
-          sdescription_jp: this.shortDescriptionJp,
-          fdescription_eng: this.fullDescriptionEn,
-          fdescription_jp: this.fullDescriptionJp,
-        });
-        const response = await axios.post('http://localhost:8080/product/add', {data:{
-          name_eng: this.productNameEn,
-          name_jp: this.productNameJp,
-          sdescription_eng: this.shortDescriptionEn,
-          sdescription_jp: this.shortDescriptionJp,
-          fdescription_eng: this.fullDescriptionEn,
-          fdescription_jp: this.fullDescriptionJp,
-          // status: this.status,
-          // platformTag: this.platformTag,
-          // technologyFramework: this.technologyFramework,
-          // tool: this.tool,
-        }});
+        // Collect data from Step 1
+        const step1Data = this.$refs.step1.$data;
+
+        const productData = {
+          name_eng: step1Data.productNameEn,
+          name_jp: step1Data.productNameJp,
+          sdescription_eng: step1Data.shortDescriptionEn,
+          sdescription_jp: step1Data.shortDescriptionJp,
+          fdescription_eng: step1Data.fullDescriptionEn,
+          fdescription_jp: step1Data.fullDescriptionJp,
+          status: step1Data.status
+          // Add more data from other steps as needed
+        };
+
+        console.log('Submitting form with data:', productData);
+        const response = await axios.post('http://localhost:8080/product/add', { data: productData });
         console.log('Product added:', response.data);
-        // Optionally, redirect or show a success message
       } catch (error) {
         console.error('Error adding product:', error);
       }

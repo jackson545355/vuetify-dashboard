@@ -27,8 +27,8 @@
                     </th>
                     <th class="text-left" style="width: 5%">No.</th>
                     <th class="text-left" style="width: 0%"></th>
-                    <th class="text-center" style="width: 45%">Name</th>
-                    <th class="text-center custom-action-cell" style="width: 45%">Action</th>
+                    <th class="text-center" style="width: 50%">Name</th>
+                    <th class="text-center custom-action-cell" style="width: 40%">Action</th>
                 </tr>
             </template>
             <template v-slot:item="{ item, index }">
