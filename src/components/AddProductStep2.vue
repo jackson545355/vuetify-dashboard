@@ -10,6 +10,7 @@
   
   <script>
   export default {
+    name: 'AddProductStep2',
 
   };
   </script>

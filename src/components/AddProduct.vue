@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/valid-v-slot -->
 <template>
   <div class="addstep1">
     <v-breadcrumbs divider="mdi-chevron-right" class="custom-breadcrumbs">
@@ -7,7 +8,7 @@
       </v-breadcrumbs-item>
     </v-breadcrumbs>
     <div class="addstepcontent">
-      <v-stepper v-model="activeStep">
+      <!-- <v-stepper v-model="activeStep">
         <v-stepper-header>
           <v-stepper-step :complete="activeStep > 1" step="1">Main Info</v-stepper-step>
           <v-stepper-step :complete="activeStep > 2" step="2">Link & Media</v-stepper-step>
@@ -32,6 +33,25 @@
             <v-btn @click="submitForm">Submit</v-btn>
           </v-stepper-content>
         </v-stepper-items>
+      </v-stepper> -->
+      <v-stepper editable :items="['Main Info', 'Link & Media', 'Launch']">
+        <template v-slot:item.1>
+          <v-card flat>
+            <Step1 />
+          </v-card>
+        </template>
+      
+        <template v-slot:item.2>
+          <v-card flat>
+            <Step2 />
+          </v-card>
+        </template>
+      
+        <template v-slot:item.3>
+          <v-card flat>
+            <Step3 />
+          </v-card>
+        </template>
       </v-stepper>
     </div>
   </div>
@@ -39,9 +59,9 @@
 
 <script>
 import axios from 'axios';
-import Step1 from './Step1.vue';
-import Step2 from './Step2.vue';
-import Step3 from './Step3.vue';
+import Step1 from './AddProductStep1.vue';
+import Step2 from './AddProductStep2.vue';
+import Step3 from './AddProductStep3.vue';
 import "../assets/css/AddProductStep1.css";
 
 export default {
@@ -49,7 +69,7 @@ export default {
   components: {
     Step1,
     Step2,
-    Step3
+    Step3,
   },
   data: () => ({
     activeStep: 1,

@@ -47,6 +47,7 @@
 
 <script>
 export default {
+    name: 'AddProductStep1',
     data: () => ({
         productNameEn: '',
         productNameJp: '',
@@ -66,7 +67,4 @@ export default {
 </script>
 
 <style>
-.redstar {
-    color: red;
-}
 </style>
