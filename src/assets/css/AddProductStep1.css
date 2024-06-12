@@ -2,6 +2,13 @@ h2{
     color: gray;
 }
 
+hr {
+    border: 0;
+    height: 1px; /* Độ dày của đường */
+    background-color: gray; /* Màu xám */
+    margin: 20px 0; /* Khoảng cách trên dưới */
+  }
+
 .redstar {
     color: red;
     margin-left: 4px; /* Khoảng cách giữa chữ và dấu * */
