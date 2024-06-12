@@ -1,0 +1,90 @@
+h2 {
+  color: gray;
+}
+h4 {
+  margin-bottom: 5px;
+}
+
+.redstar {
+  color: red;
+  margin-left: 4px; /* Khoảng cách giữa chữ và dấu * */
+}
+
+hr {
+  border: 0;
+  height: 1px; /* Độ dày của đường */
+  background-color: gray; /* Màu xám */
+  margin: 20px 0; /* Khoảng cách trên dưới */
+}
+/* Logo section */
+.centered-label .v-label {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Screenshots Section */
+.dashed-border {
+  border: 2px dashed #ccc;
+  border-radius: 16px;
+  padding: 10px;
+  height: auto;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.screenshot {
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.screenshot-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.screenshot-card {
+  height: 100px;
+  width: 100px;
+  position: relative;
+  border: 2px #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.screenshot-card:hover {
+  transform: scale(1.05);
+  border-color: #aaa;
+}
+
+.screenshot-hover {
+  border-color: #aaa;
+}
+
+.delete-btn,
+.edit-btn {
+  position: absolute;
+  z-index: 1;
+}
+
+.delete-btn {
+  top: 8px;
+  right: 8px;
+}
+
+.edit-btn {
+  bottom: 8px;
+  left: 8px;
+}
