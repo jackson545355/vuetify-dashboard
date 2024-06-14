@@ -1,0 +1,167 @@
+hr {
+  border: 0;
+  height: 1px; /* Độ dày của đường */
+  background-color: gray; /* Màu xám */
+  margin: 20px 0; /* Khoảng cách trên dưới */
+}
+
+h4 {
+  font-weight: bold;
+  color: black;
+}
+
+.custom-dialog-card {
+  background-color: white; /* Set the background color to white */
+  padding: 16px;
+  border-radius: 16px;
+  overflow-y: hidden;
+}
+
+.v-card-title {
+  padding: 0 16px;
+  flex-wrap: wrap;
+}
+
+.v-card-title .headline {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.v-card-title .logo {
+  width: 100px;
+  height: 100px;
+}
+
+.v-card-title .version {
+  font-size: 0.9rem;
+  color: #757575;
+}
+
+.v-btn.icon {
+  margin-right: 8px;
+}
+
+.tech-tools-section {
+  margin-top: 24px;
+}
+
+.v-list-item-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.v-subheader {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #424242;
+}
+
+.v-btn {
+  font-size: 0.875rem;
+}
+
+.v-img {
+  border-radius: 8px;
+}
+
+/* Custom Carousel Styling */
+/* .carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .custom-carousel {
+    height: 300px;
+    position: relative;
+  }
+  
+  .custom-carousel .v-carousel__items {
+    height: 300px;
+    transform: translateX(-7%);
+  }
+  
+  .custom-carousel .v-carousel-item {
+    transition: transform 0.5s ease;
+    width: 120%;
+  }
+  
+  .custom-carousel .v-carousel__item--active {
+    transform: scale(1);
+  }
+  
+  .custom-carousel .v-carousel__controls__prev,
+  .custom-carousel .v-carousel__controls__next {
+    top: auto;
+    bottom: 10px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+  }
+  
+  .custom-carousel .v-carousel__controls__next {
+    right: 10px;
+  }
+  
+  .custom-carousel .v-carousel__controls__prev {
+    left: 10px;
+  }
+   */
+@media (max-width: 600px) {
+  .custom-dialog-card {
+    padding: 12px;
+  }
+
+  .v-card-title .headline {
+    font-size: 1.25rem;
+  }
+
+  .tech-tools-section {
+    flex-direction: column;
+  }
+
+  .tech-tools-section > .v-col {
+    margin-bottom: 16px;
+  }
+
+  .v-card-title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .v-card-title .version,
+  .v-card-title .v-btn {
+    margin-top: 8px;
+  }
+
+  .carousel-wrapper {
+    overflow: hidden;
+  }
+
+  .custom-carousel {
+    height: 200px;
+  }
+
+  .custom-carousel .v-carousel__items {
+    height: 200px;
+    transform: translateX(-7%);
+  }
+
+  .custom-carousel .v-carousel-item {
+    width: 150%;
+  }
+}
+
+.carousel__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  /* Ensure images fill the slide */
+}
+
+.masterItems {
+  width: 40px;
+  height: 40px;
+  align-items: start;
+}
