@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import '../assets/css/AddProductStep3.css'
 export default {
   name: 'AddProductStep3',
   data(){
@@ -32,18 +33,6 @@ export default {
 </script>
 
 <style scoped>
-hr {
-  border: 0;
-  height: 1px;
-  background-color: gray;
-  margin: 20px 0;
-}
-span{
-  font-weight: 500;
-  color: black;
-}
-.v-selection-control__wrapper{
-  margin-top: 20px;
-}
+
 
 </style>

@@ -102,9 +102,9 @@
                             <v-img :src="logo || require('../assets/images/defaultLogo.png')" max-height="100"
                                 max-width="100" class="mt-2"></v-img>
                         </v-col>
-                        <v-col cols="12" sm="9">
+                        <v-col cols="12" sm="6">
                             <v-file-input v-model="logoFile" label="Logo" prepend-icon="mdi-upload"
-                                accept="image/png, image/jpeg, image/svg+xml" outlined variant="outlined" required
+                                accept="image/png, image/jpeg, image/svg+xml" outlined variant="solo" required
                                 @change="onFileChange"></v-file-input>
                             <small class="caption">
                                 Logo must be .SVG or PNG
@@ -114,7 +114,7 @@
                         </v-col>
                         <v-col cols="12"><h4>Tool name <span class="redstar">*</span></h4></v-col>
                         <v-col cols="12">
-                            <v-text-field v-model="toolName" label="Tool name" variant="outlined"
+                            <v-text-field v-model="toolName" label="Tool name" variant="solo"
                                 :rules="[v => !!v || 'Tool name is required']" required></v-text-field>
                         </v-col>
                     </v-row>

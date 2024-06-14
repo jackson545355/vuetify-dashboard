@@ -81,7 +81,7 @@
                     <v-row>
                         <v-col cols="12"><h4>Logo <span class="redstar">*</span></h4></v-col>
                         <v-col cols="12">
-                            <v-text-field v-model="platformName" label="Platform name" variant="outlined"
+                            <v-text-field v-model="platformName" label="Platform name" variant="solo"
                             :rules="[v => !!v || 'Platform name is required']" required></v-text-field>
                         </v-col>
                     </v-row>
