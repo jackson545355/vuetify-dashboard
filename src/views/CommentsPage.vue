@@ -2,16 +2,17 @@
     <div>
       <h1>About Comments Page</h1>
     </div>
+    <ProductDetail/>
   </template>
   
   <script>
-  //import HelloWorld from '../components/HelloWorld.vue'
+  import ProductDetail from '../components/ProductDetail.vue'
   
   export default {
     name: 'CommentsPage',
-    // components: {
-    //   HelloWorld
-    // }
+    components: {
+      ProductDetail,
+    }
   }
   </script>
   

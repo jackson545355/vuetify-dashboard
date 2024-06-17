@@ -1,21 +1,20 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div class="data-table-container">
-        <v-toolbar flat color="white">
+        <v-row style="margin-top: 3px;">
             <v-text-field v-model="search" append-icon="mdi-magnify" label="Search Platforms" hide-details
                 class="search-bar" single-line outlined></v-text-field>
-            <v-spacer></v-spacer>
             <div class="btn-container">
                 <v-btn color="red" class="mx-2" variant="elevated" size="large" @click="openDeleteSelectedDialog"
                     :disabled="selected.length === 0">Delete</v-btn>
                 <v-btn color="black" class="mx-2" variant="elevated" size="large" @click="openAddDialog">
-                    <v-icon left>mdi-plus</v-icon>
-                    Add Platform
+                    <v-icon left color="white">mdi-plus</v-icon>
+                    <span style="color: white;">Add platform</span>
                 </v-btn>
             </div>
-        </v-toolbar>
-
+        </v-row>
         <br />
+
 
         <v-data-table v-model="selected" :headers="headers" :items="filteredItems" item-value="name" show-select
             class="elevation-1" :items-per-page="itemsPerPage" :search="search">
@@ -81,7 +80,7 @@
                     <v-row>
                         <v-col cols="12"><h4>Logo <span class="redstar">*</span></h4></v-col>
                         <v-col cols="12">
-                            <v-text-field v-model="platformName" label="Platform name" variant="outlined"
+                            <v-text-field v-model="platformName" label="Platform name" variant="solo"
                             :rules="[v => !!v || 'Platform name is required']" required></v-text-field>
                         </v-col>
                     </v-row>
@@ -91,7 +90,7 @@
                 <v-spacer></v-spacer>
                 <v-btn color="black" size="large" text @click="addDialog = false">Cancel</v-btn>
                 <v-btn color="black" size="large" variant="elevated" :disabled="!valid"
-                    @click="editMode ? updatePlatform() : savePlatform()">Save</v-btn>
+                    @click="editMode ? updatePlatform() : savePlatform()"><span style="color: white;">Save</span></v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>

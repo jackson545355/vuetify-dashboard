@@ -1,20 +1,20 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
     <div class="data-table-container">
-        <v-toolbar flat color="white">
+        <v-row style="margin-top: 3px;">
             <v-text-field v-model="search" append-icon="mdi-magnify" label="Search Tools" hide-details
                 class="search-bar" single-line outlined></v-text-field>
-            <v-spacer></v-spacer>
             <div class="btn-container">
-                <v-btn color="red" class="mx-2" variant="elevated" size="large" @click="openDeleteSelectedDialog" :disabled="selected.length === 0">Delete</v-btn>
+                <v-btn color="red" class="mx-2" variant="elevated" size="large" @click="openDeleteSelectedDialog"
+                    :disabled="selected.length === 0">Delete</v-btn>
                 <v-btn color="black" class="mx-2" variant="elevated" size="large" @click="openAddDialog">
-                    <v-icon left>mdi-plus</v-icon>
-                    Add tool
+                    <v-icon left color="white">mdi-plus</v-icon>
+                    <span style="color: white;">Add tool</span>
                 </v-btn>
             </div>
-        </v-toolbar>
-
+        </v-row>
         <br />
+
 
         <v-data-table 
             v-model="selected" 
@@ -102,9 +102,9 @@
                             <v-img :src="logo || require('../assets/images/defaultLogo.png')" max-height="100"
                                 max-width="100" class="mt-2"></v-img>
                         </v-col>
-                        <v-col cols="12" sm="9">
+                        <v-col cols="12" sm="6">
                             <v-file-input v-model="logoFile" label="Logo" prepend-icon="mdi-upload"
-                                accept="image/png, image/jpeg, image/svg+xml" outlined variant="outlined" required
+                                accept="image/png, image/jpeg, image/svg+xml" outlined variant="solo" required
                                 @change="onFileChange"></v-file-input>
                             <small class="caption">
                                 Logo must be .SVG or PNG
@@ -114,7 +114,7 @@
                         </v-col>
                         <v-col cols="12"><h4>Tool name <span class="redstar">*</span></h4></v-col>
                         <v-col cols="12">
-                            <v-text-field v-model="toolName" label="Tool name" variant="outlined"
+                            <v-text-field v-model="toolName" label="Tool name" variant="solo"
                                 :rules="[v => !!v || 'Tool name is required']" required></v-text-field>
                         </v-col>
                     </v-row>
@@ -124,7 +124,7 @@
                 <v-spacer></v-spacer>
                 <v-btn color="black" size="large" text @click="addDialog = false">Cancel</v-btn>
                 <v-btn color="black" size="large" variant="elevated" :disabled="!valid"
-                    @click="editMode ? updateTool() : saveTool()">Save</v-btn>
+                    @click="editMode ? updateTool() : saveTool()"><span style="color: white;">Save</span></v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
