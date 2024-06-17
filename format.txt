@@ -8,3 +8,7 @@ data:{
     FDESCRIPTION_ENG:
     FDESCRIPTION_JP:
 }
+
+image: multipart/form-data
+const form=new FormData()
+form.add("key",value)

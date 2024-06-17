@@ -8,6 +8,15 @@
           <v-col cols="12" class="d-flex align-center justify-space-between" style="margin-bottom: -50px;">
             <span class="mr-2">Active</span>
             <v-switch v-model="activeSwitch" color="primary"></v-switch>
+            <!-- <v-switch
+              v-model="activeSwitch"
+              :label="performance ? 'On' : 'Off'"
+              color="blue-darken-4"
+              density="compact"
+              hide-details
+              inline
+              inset
+            ></v-switch> -->
           </v-col>
           <v-col cols="12" class="d-flex align-center justify-space-between">
             <span class="mr-2">Show on the home page</span>

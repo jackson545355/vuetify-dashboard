@@ -38,12 +38,14 @@
                 <!-- Dialog Content -->
                 <v-card-text class="pb-0">
                     <!-- Carousel Section -->
-                    <div class="carousel-wrapper mb-3">
+                    <!-- <div class="carousel-wrapper mb-3">
                         <v-carousel height="400px" show-arrows="hover" cycle hide-delimiter-background>
                             <v-carousel-item v-for="(image, i) in product.images" :key="i" :src="image">
                             </v-carousel-item>
                         </v-carousel>
-                    </div>
+                    </div> -->
+                    <Carousel/>
+                    
 
 
                     <v-row class="tech-tools-section">
@@ -51,9 +53,7 @@
                         <v-col cols="12" sm="6">
                             <h4>Description</h4>
                             {{ this.product.descripton }}
-                            <!-- <v-btn text class="mt-2" href="https://your-live-site.com" target="_blank">Open live
-                                        site</v-btn> -->
-                            <p><b><a href="https://your-live-site.com" target="_blank">Open live site <svg
+                            <p><b><a :href=this.product.intropage target="_blank">Open live site <svg
                                             xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="15" height="15"
                                             viewBox="0 0 48 48" color="blue">
                                             <path
@@ -89,6 +89,12 @@
                         <v-text-field v-model="this.user.comment" label="What do you think?" clearable append-icon="mdi-send"
                             variant="solo" @click:append="addComment" class="mb-3"></v-text-field>
                     </v-row>
+                    <!-- <v-text-field v-model="this.user.comment" label="What do you think?" variant="solo"> 
+                        <div>
+                            <v-avatar :image="this.user.avatar"></v-avatar>
+                            <v-btn color="blue" @click:="addComment">Send</v-btn>
+                        </div>  
+                    </v-text-field> -->
 
 
                     <!-- Display Comments -->
@@ -118,9 +124,13 @@
 </template>
 
 <script>
-import '../assets/css/ProductDetail.css'
+import '../assets/css/ProductDetail.css';
+import Carousel from './Carousel.vue';
 
 export default {
+    components:{
+        Carousel,
+    },
     data() {
         return {
             dialog: false,
