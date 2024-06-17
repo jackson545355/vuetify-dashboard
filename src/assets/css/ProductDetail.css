@@ -1,7 +1,7 @@
 hr {
   border: 0;
   height: 1px; /* Độ dày của đường */
-  background-color: gray; /* Màu xám */
+  background-color: rgb(206, 205, 205); /* Màu xám */
   margin: 20px 0; /* Khoảng cách trên dưới */
 }
 
@@ -64,49 +64,6 @@ h4 {
   border-radius: 8px;
 }
 
-/* Custom Carousel Styling */
-/* .carousel-wrapper {
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .custom-carousel {
-    height: 300px;
-    position: relative;
-  }
-  
-  .custom-carousel .v-carousel__items {
-    height: 300px;
-    transform: translateX(-7%);
-  }
-  
-  .custom-carousel .v-carousel-item {
-    transition: transform 0.5s ease;
-    width: 120%;
-  }
-  
-  .custom-carousel .v-carousel__item--active {
-    transform: scale(1);
-  }
-  
-  .custom-carousel .v-carousel__controls__prev,
-  .custom-carousel .v-carousel__controls__next {
-    top: auto;
-    bottom: 10px;
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-  }
-  
-  .custom-carousel .v-carousel__controls__next {
-    right: 10px;
-  }
-  
-  .custom-carousel .v-carousel__controls__prev {
-    left: 10px;
-  }
-   */
 @media (max-width: 600px) {
   .custom-dialog-card {
     padding: 12px;
@@ -132,6 +89,7 @@ h4 {
   .v-card-title .version,
   .v-card-title .v-btn {
     margin-top: 8px;
+    margin-bottom: 2px;
   }
 
   .carousel-wrapper {
@@ -164,4 +122,6 @@ h4 {
   width: 40px;
   height: 40px;
   align-items: start;
+  text-align: start;
+  margin-left: auto;
 }
