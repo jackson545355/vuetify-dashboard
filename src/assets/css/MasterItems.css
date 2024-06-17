@@ -1,104 +1,116 @@
-.v-toolbar__content{
-    border-left: none !important;
-    border-bottom: none !important;
-  }
-  .custom-header {
-    background-color: #f0f0f0; /* Màu nền xám nhẹ */
-  }
-  
-  .custom-checkbox-cell {
-    background-color: #f0f0f0; /* Màu nền xám nhẹ */
-    border-top-left-radius: 10px; /* Bo tròn góc trên trái */
-  }
-  
-  .custom-action-cell {
-    background-color: #f0f0f0; /* Màu nền xám nhẹ */
-    border-top-right-radius: 10px; /* Bo tròn góc trên phải */
-  }
-  
-  .data-table-container {
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 16px;
-    background-color: #fff;
-    overflow: hidden;
-  }
-  .v-data-table-header th {
-    font-weight: bold;
-  }
-  .v-btn {
-    margin: 0 5px;
-    border-radius: 12px;
-  }
-  .btn-container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  @media (max-width: 600px) {
-    .btn-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-  
-    .btn-container v-btn {
-        margin-bottom: 8px;
-    }
-  }
-  .v-data-table .v-input--selection-controls__input {
-    margin: 0 auto;
-  }
-  td {
-    vertical-align: middle !important;
-  }
-  .text-center {
-    text-align: center !important;
-  }
-  .pagination {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-  }
-  .pagination .v-data-footer__select {
+.custom-header {
+  background-color: #f0f0f0; /* Màu nền xám nhẹ */
+}
+
+.custom-checkbox-cell {
+  background-color: #f0f0f0; /* Màu nền xám nhẹ */
+  border-top-left-radius: 10px; /* Bo tròn góc trên trái */
+}
+
+.custom-action-cell {
+  background-color: #f0f0f0; /* Màu nền xám nhẹ */
+  border-top-right-radius: 10px; /* Bo tròn góc trên phải */
+}
+
+.data-table-container {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 2%;
+  background-color: #fff;
+  overflow: hidden;
+}
+.v-data-table-header th {
+  font-weight: bold;
+}
+.v-btn {
+  margin: 0 5px;
+  border-radius: 12px;
+}
+.btn-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .data-table-container{
     margin-right: auto;
   }
+  .btn-container {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-container v-btn {
+    margin-bottom: 8px;
+  }
+
   .search-bar {
-    max-width: 400px;
+    max-width: 350px;
     margin-right: auto; /* Aligns the search bar to the left */
     border: 1px solid #e0e0e0;
     border-radius: 25px;
+    padding-right: 15px;
     padding-left: 15px;
     background-color: white;
-    .v-input__append{
+    .v-input__append {
       margin-right: 16px;
     }
   }
-  .v-text-field--outlined .v-input__control {
-    border-radius: 25px;
-    border: 1px solid #dcdcdc;
-    background-color: white; /* Set background color to white */
+}
+.v-data-table .v-input--selection-controls__input {
+  margin: 0 auto;
+}
+td {
+  vertical-align: middle !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.pagination .v-data-footer__select {
+  margin-right: auto;
+}
+.search-bar {
+  max-width: 400px;
+  margin-right: auto; /* Aligns the search bar to the left */
+  border: 1px solid #e0e0e0;
+  border-radius: 25px;
+  padding-left: 15px;
+  background-color: white;
+  .v-input__append {
+    margin-right: 16px;
   }
-  .v-text-field--outlined .v-input__control .v-input__slot {
-    border-radius: 25px;
-    padding: 10px;
-    background-color: white; /* Set background color to white */
-  }
-  .v-text-field--outlined .v-input__control::before,
-  .v-text-field--outlined .v-input__control::after {
-    border-bottom: none !important; /* Remove the underline */
-  }
-  .v-field--variant-filled .v-field__overlay {
-    background-color: white;
-  }
-  .v-field__outline {
-    --v-field-border-width: 0px;
-  }
-  .redstar {
+}
+.v-text-field--outlined .v-input__control {
+  border-radius: 25px;
+  border: 1px solid #dcdcdc;
+  background-color: white; /* Set background color to white */
+}
+.v-text-field--outlined .v-input__control .v-input__slot {
+  border-radius: 25px;
+  padding: 10px;
+  background-color: white; /* Set background color to white */
+}
+.v-text-field--outlined .v-input__control::before,
+.v-text-field--outlined .v-input__control::after {
+  border-bottom: none !important; /* Remove the underline */
+}
+.v-field--variant-filled .v-field__overlay {
+  background-color: white;
+}
+.v-field__outline {
+  --v-field-border-width: 0px;
+}
+.redstar {
   color: red;
 }
-  

@@ -25,6 +25,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin-top: 2%;
   }
   
   .ml-3 {
@@ -83,7 +84,7 @@
   
   .addbuttom {
     margin-left: 120%;
-    /* background-color: black; */
+    background-color: black;
   }
   
   .pagnation {

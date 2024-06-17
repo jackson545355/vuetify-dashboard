@@ -33,7 +33,7 @@
             </div>
           </v-card-title>
           <v-card-subtitle>{{ product.type }}</v-card-subtitle>
-          <hr />
+          <hr style="margin-top:10px; margin-bottom:0px"/>
           <v-card-text class="card-text">
             <div class="dates-container">
               <div class="create-date">Create date: <br /> {{ formatDate(product.createAt) }}</div>
