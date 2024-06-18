@@ -120,7 +120,6 @@
             </v-card>
         </v-dialog>
     </v-container>
-
 </template>
 
 <script>

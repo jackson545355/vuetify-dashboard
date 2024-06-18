@@ -1,114 +1,125 @@
 .dashboard {
-    display: flex;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    background-color: rgb(243, 245, 247);
-  }
-  
-  .card-style {
-    transition: transform 0.2s;
-    cursor: pointer;
-  }
-  
-  .card-style:hover {
-    transform: scale(1.05);
-  }
-  
-  .card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 2%;
-  }
-  
-  .ml-3 {
-    margin-left: 1rem;
-  }
-  
-  .card-text {
-    margin-top: 0.5%;
-    margin-bottom: 0.5%;
-  }
-  
-  .dates-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .create-date {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-left: 10%;
-    color: #757575;
-    /* Secondary color */
-  }
-  
-  .last-update {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin-right: 10%;
-    color: #757575;
-    /* Secondary color */
-  }
-  
-  .v-card-subtitle {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-bottom: 5%;
-    margin-left: 16.7%;
-    color: #1976d2;
-    /* Primary color of Vuetify */
-  }
-  
-  .v-card-text > div {
-    font-size: 0.9rem;
-    color: #757575;
-    /* Secondary color */
-  }
-  
-  hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin-top: 1em 0;
-    padding: 0;
-  }
-  
-  .addbuttom {
-    margin-left: 120%;
-    background-color: black;
-  }
-  
-  .pagnation {
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .white-background {
-    background-color: white;
-  }
-  
-  .red-text {
-    color: red !important;
-  }
-  
-  .rounded-list {
-    border-radius: 32px;
-    overflow: hidden;
-  }
-
-  .header.expanded{
-    margin-left: 0;
-  }
-  
-.filter{
-  margin-top: 2.2%;
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(243, 245, 247);
+}
+
+.card-style {
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.card-style:hover {
+  transform: scale(1.05);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2%;
+}
+
+.ml-3 {
+  margin-left: 1rem;
+}
+
+.card-text {
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
+}
+
+.dates-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.create-date {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-left: 10%;
+  color: #757575;
+  /* Secondary color */
+}
+
+.last-update {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-right: 10%;
+  color: #757575;
+  /* Secondary color */
+}
+
+.v-card-subtitle {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 5%;
+  margin-left: 16.7%;
+  color: #1976d2;
+  /* Primary color of Vuetify */
+}
+
+.v-card-text > div {
+  font-size: 0.9rem;
+  color: #757575;
+  /* Secondary color */
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin-top: 1em 0;
+  padding: 0;
+}
+
+.addbuttom {
+  margin-left: 120%;
+  background-color: black;
+}
+
+.pagnation {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.white-background {
+  background-color: white;
+}
+
+.red-text {
+  color: red;
+}
+
+.rounded-list {
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.header.expanded {
+  margin-left: 0;
+}
+
+.filter {
+  border: 0.5px outset rgb(238, 235, 235);
+  border-radius: 6px;
+  background-color: white;
+  padding: 0%;
+  height: 50%;
+}
+
+/* .v-input__details {
+  grid-area: auto !important;
+  padding: 0px !important;
+} */
+
+

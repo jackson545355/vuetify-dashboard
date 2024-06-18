@@ -18,14 +18,15 @@
 
       <v-col cols="12" sm="6" md="4" class="filter">
         <!-- Filter dropdown -->
-        <v-select v-model="selectedType" :items="types" label="Filter by Type" clearable density="compact"
-          varriant="solo" oulined @change="filterItems"></v-select>
+        <v-select v-model="selectedType" :items="this.types" label="Filter by Type" clearable density="compact"
+          varriant="solo" @change="filterItems"></v-select>
       </v-col>
 
       <v-col cols="12" sm="6" md="4" class="text-right">
         <!-- Add Product button -->
-        <v-btn size="large" prepend-icon="mdi-plus" variant="elevated" class="addbutton" @click="navigateToAddProduct">
-          Add Product
+        <v-btn size="large" color="black" variant="elevated" class="addbutton" @click="navigateToAddProduct">
+          <v-icon left color="white">mdi-plus</v-icon>
+          <span style="color: white;">Add product</span>
         </v-btn>
       </v-col>
     </v-row>

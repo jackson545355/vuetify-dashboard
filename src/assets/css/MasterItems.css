@@ -65,10 +65,10 @@
   margin: 0 auto;
 }
 td {
-  vertical-align: middle !important;
+  vertical-align: middle ;
 }
 .text-center {
-  text-align: center !important;
+  text-align: center;
 }
 .pagination {
   display: flex;
@@ -103,7 +103,7 @@ td {
 }
 .v-text-field--outlined .v-input__control::before,
 .v-text-field--outlined .v-input__control::after {
-  border-bottom: none !important; /* Remove the underline */
+  border-bottom: none; /* Remove the underline */
 }
 .v-field--variant-filled .v-field__overlay {
   background-color: white;
