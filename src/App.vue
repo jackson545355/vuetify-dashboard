@@ -2,7 +2,6 @@
   <v-app>
     <v-layout>
       <div class="dashboard">
-        <Sidebar v-if="!isSidebarCollapsed" />
         <div class="content" :class="{ expanded: isSidebarCollapsed }">
           <Header
             class="header"
@@ -14,6 +13,7 @@
           </v-main>
         </div>
       </div>
+      <Sidebar v-if="!isSidebarCollapsed" />
     </v-layout>
   </v-app>
 </template>

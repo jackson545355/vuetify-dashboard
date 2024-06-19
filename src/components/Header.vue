@@ -5,10 +5,10 @@
     </button> -->
     <v-app-bar-nav-icon
       variant="text"
-      @click="$emit('toggleSidebar')"
+      @click.stop="$emit('toggleSidebar')"
     ></v-app-bar-nav-icon>
     <v-spacer></v-spacer>
-    <v-menu open-on-hover>
+    <v-menu justify-space-around>
       <template v-slot:activator="{ props }">
         <v-btn class="flag-button" v-bind="props">
           <v-img

@@ -1,7 +1,7 @@
 
 .header{
     margin-right: 20px;
-    margin-left: 3px;
+    /* margin-left: 3px; */
 }
 .v-toolbar__content{
     border-bottom: 0.1px solid rgb(211, 210, 210);
@@ -33,12 +33,12 @@
     border-radius: 5px;
     margin-left: 20px;
   }
-  
+
   .toggle-button img {
     width: 25px; /* Điều chỉnh kích thước của biểu tượng */
     height: 25px;
   }
 
   .v-navigation-drawer v-navigation-drawer--left v-navigation-drawer--active v-theme--light{
-    transform: translateX(0px); 
+    transform: translateX(0px);
   }
