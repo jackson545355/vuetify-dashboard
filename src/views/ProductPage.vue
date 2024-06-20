@@ -82,7 +82,7 @@ export default {
     async fetchProducts() {
       this.loading = true;
       try {
-        const response = await axios.get('http://127.0.0.1:8080/product/');
+        const response = await axios.get('http://127.0.0.1:4000/products/');
         this.projects = response.data;
         this.filteredItems = this.projects;
       } catch (error) {
